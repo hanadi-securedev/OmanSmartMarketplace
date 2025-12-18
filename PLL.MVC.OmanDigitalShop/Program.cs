@@ -1,3 +1,8 @@
+using BLL.OmanDigitalShop.Context;
+using DAL.OmanDigitalShop.Models.Users;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 namespace PLL.MVC.OmanDigitalShop;
 
 public class Program
@@ -9,7 +14,22 @@ public class Program
         // Add services to the container.
         builder.Services.AddControllersWithViews();
 
-        var app = builder.Build();
+        builder.Services.AddDbContext<ApplicationDbContext>(
+            options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConn")));
+
+
+        builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+        {
+            options.Password.RequireDigit = true;
+            options.Password.RequireUppercase = true;
+
+        }).AddEntityFrameworkStores<ApplicationDbContext>()
+          .AddDefaultTokenProviders();  
+            
+            
+            
+            
+            var app = builder.Build();
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
@@ -23,7 +43,7 @@ public class Program
         app.UseStaticFiles();
 
         app.UseRouting();
-
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllerRoute(

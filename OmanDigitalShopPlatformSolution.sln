@@ -11,11 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SLL.OmanDigitalShop", "SLL.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pll.Api.OmanDigitalShop", "Pll.Api.OmanDigitalShop\Pll.Api.OmanDigitalShop.csproj", "{038D1350-7889-A67A-4E39-B4D782452A03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmanDigitalShopPlatformSolution.ServiceDefaults", "OmanDigitalShopPlatformSolution.ServiceDefaults\OmanDigitalShopPlatformSolution.ServiceDefaults.csproj", "{FA8A0CBE-0678-F471-25A7-8BCD45290F3B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLL.MVC.OmanDigitalShop", "PLL.MVC.OmanDigitalShop\PLL.MVC.OmanDigitalShop.csproj", "{2181C917-7ED6-51E9-9058-D3881C9046F2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmanDigitalShopPlatformSolution1.ServiceDefaults", "OmanDigitalShopPlatformSolution1.ServiceDefaults\OmanDigitalShopPlatformSolution1.ServiceDefaults.csproj", "{B730A59E-E4AE-C96A-8776-8BFEC44EBFE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,18 +35,10 @@ Global
 		{038D1350-7889-A67A-4E39-B4D782452A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{038D1350-7889-A67A-4E39-B4D782452A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{038D1350-7889-A67A-4E39-B4D782452A03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA8A0CBE-0678-F471-25A7-8BCD45290F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA8A0CBE-0678-F471-25A7-8BCD45290F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA8A0CBE-0678-F471-25A7-8BCD45290F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA8A0CBE-0678-F471-25A7-8BCD45290F3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2181C917-7ED6-51E9-9058-D3881C9046F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2181C917-7ED6-51E9-9058-D3881C9046F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2181C917-7ED6-51E9-9058-D3881C9046F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2181C917-7ED6-51E9-9058-D3881C9046F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B730A59E-E4AE-C96A-8776-8BFEC44EBFE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B730A59E-E4AE-C96A-8776-8BFEC44EBFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B730A59E-E4AE-C96A-8776-8BFEC44EBFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B730A59E-E4AE-C96A-8776-8BFEC44EBFE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

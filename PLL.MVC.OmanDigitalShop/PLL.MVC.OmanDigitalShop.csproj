@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BLL.OmanDigitalShop\BLL.OmanDigitalShop.csproj" />
     <ProjectReference Include="..\SLL.OmanDigitalShop\SLL.OmanDigitalShop.csproj" />
   </ItemGroup>
