@@ -1,5 +1,6 @@
 ﻿
 
+using DAL.OmanDigitalShop.Models.Products;
 using DAL.OmanDigitalShop.Models.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,9 +12,9 @@ namespace BLL.OmanDigitalShop.Context
     public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         public ApplicationDbContext(DbContextOptions options)
-            :base(options)
+            : base(options)
         {
-            
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,5 +25,10 @@ namespace BLL.OmanDigitalShop.Context
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
+        public DbSet<Product> products { get; set; }
+
+        public DbSet<Category> categories { get; set; }
+        
     }
 }
