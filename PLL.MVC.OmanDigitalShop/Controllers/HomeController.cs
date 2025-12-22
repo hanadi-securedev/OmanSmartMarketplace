@@ -1,37 +1,74 @@
-using System.Diagnostics;
-using BLL.OmanDigitalShop.Repositories;
-using DAL.OmanDigitalShop.Models.Products;
+// ============================================
+// Joonguini - Programming in the Kitchen
+// ============================================
+// HomeController: الكونترولر الرئيسي
+// يعرض الصفحة الرئيسية للمتجر
+// ============================================
+
 using Microsoft.AspNetCore.Mvc;
 using PLL.MVC.OmanDigitalShop.Models;
+using SLL.OmanDigitalShop.Interfaces;
+using System.Diagnostics;
 
-namespace PLL.MVC.OmanDigitalShop.Controllers;
-
-public class HomeController : Controller
+namespace PLL.MVC.OmanDigitalShop.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-    private readonly GenericRepository<Product> _productRepository;
-    private readonly GenericRepository<Category> _categoryRepository;
-
-    public HomeController(GenericRepository<Product> productRepository , GenericRepository<Category> CategoryRepository)
+    /// <summary>
+    /// الكونترولر الرئيسي للموقع
+    /// </summary>
+    public class HomeController : Controller
     {
-        
-        _productRepository = productRepository;
-        _categoryRepository = CategoryRepository;
-    }
+        // ============================================
+        // المتغيرات الخاصة
+        // ============================================
 
-    public IActionResult Index()
-    {
-        return View(_productRepository.GetAllAsync());
-    }
+        private readonly IProductService _productService;
+        private readonly ICategoryService _categoryService;
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        // ============================================
+        // Constructor
+        // ============================================
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public HomeController(
+            IProductService productService,
+            ICategoryService categoryService)
+        {
+            _productService = productService;
+            _categoryService = categoryService;
+        }
+
+        // ============================================
+        // الصفحة الرئيسية
+        // ============================================
+
+        /// <summary>
+        /// عرض الصفحة الرئيسية مع المنتجات
+        /// </summary>
+        public async Task<IActionResult> Index()
+        {
+            var products = await _productService.GetActiveProductsAsync();
+            var categories = await _categoryService.GetActiveCategoriesAsync();
+
+            ViewBag.Categories = categories;
+            return View(products);
+        }
+
+        // ============================================
+        // صفحة الخصوصية
+        // ============================================
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        // ============================================
+        // صفحة الخطأ
+        // ============================================
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

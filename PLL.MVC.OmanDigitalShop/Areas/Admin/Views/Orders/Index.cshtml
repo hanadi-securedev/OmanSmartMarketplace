@@ -1,0 +1,93 @@
+@* ============================================
+   Joonguini - Programming in the Kitchen
+   قائمة الطلبات
+   ============================================ *@
+
+@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = ViewBag.Title ?? "إدارة الطلبات";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4>@ViewData["Title"]</h4>
+    <div class="btn-group">
+        <a asp-action="Index" class="btn btn-outline-secondary">الكل</a>
+        <a asp-action="Pending" class="btn btn-outline-warning">معلقة</a>
+        <a asp-action="Confirmed" class="btn btn-outline-info">مؤكدة</a>
+        <a asp-action="Shipping" class="btn btn-outline-primary">قيد الشحن</a>
+        <a asp-action="Delivered" class="btn btn-outline-success">مكتملة</a>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>رقم الطلب</th>
+                        <th>العميل</th>
+                        <th>التاريخ</th>
+                        <th>المجموع</th>
+                        <th>الحالة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var order in Model)
+                        {
+                            <tr>
+                                <td><strong>#@order.Id</strong></td>
+                                <td>
+                                    @order.AppUser?.FullName
+                                    <small class="text-muted d-block">@order.AppUser?.Email</small>
+                                </td>
+                                <td>@order.OrderDate.ToString("yyyy-MM-dd HH:mm")</td>
+                                <td>
+                                    <span class="text-success fw-bold">@order.TotalAmount.ToString("N2") ر.ع</span>
+                                </td>
+                                <td>
+                                    @switch (order.Status)
+                                    {
+                                        case OrderStatus.Pending:
+                                            <span class="badge bg-warning text-dark">معلق</span>
+                                            break;
+                                        case OrderStatus.Confirmed:
+                                            <span class="badge bg-info">مؤكد</span>
+                                            break;
+                                        case OrderStatus.Shipping:
+                                            <span class="badge bg-primary">قيد الشحن</span>
+                                            break;
+                                        case OrderStatus.Delivered:
+                                            <span class="badge bg-success">مكتمل</span>
+                                            break;
+                                        case OrderStatus.Cancelled:
+                                            <span class="badge bg-danger">ملغي</span>
+                                            break;
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-outline-info">
+                                        <i class="bi bi-eye"></i> التفاصيل
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">
+                                <i class="bi bi-inbox display-4 d-block mb-2"></i>
+                                لا توجد طلبات
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

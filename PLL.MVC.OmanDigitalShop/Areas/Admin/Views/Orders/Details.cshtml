@@ -1,0 +1,161 @@
+@* ============================================
+   Joonguini - Programming in the Kitchen
+   تفاصيل الطلب
+   ============================================ *@
+
+@model Order
+
+@{
+    ViewData["Title"] = $"تفاصيل الطلب #{Model.Id}";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <!-- Order Details -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-cart"></i> تفاصيل الطلب #@Model.Id</h5>
+                <span class="badge @GetStatusBadgeClass(Model.Status) fs-6">@GetStatusText(Model.Status)</span>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h6>معلومات العميل</h6>
+                        <p class="mb-1"><strong>الاسم:</strong> @Model.AppUser?.FullName</p>
+                        <p class="mb-1"><strong>البريد:</strong> @Model.AppUser?.Email</p>
+                        <p class="mb-1"><strong>الهاتف:</strong> @Model.PhoneNumber</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>عنوان التوصيل</h6>
+                        <p class="mb-1">@Model.ShippingAddress</p>
+                        <p class="mb-1">@Model.City @(string.IsNullOrEmpty(Model.PostalCode) ? "" : $"- {Model.PostalCode}")</p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <h6>المنتجات</h6>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="table-light">
+                            <tr>
+                                <th>المنتج</th>
+                                <th>السعر</th>
+                                <th>الكمية</th>
+                                <th>المجموع</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.OrderItems != null)
+                            {
+                                @foreach (var item in Model.OrderItems)
+                                {
+                                    <tr>
+                                        <td>@item.Product?.Name</td>
+                                        <td>@item.UnitPrice.ToString("N2") ر.ع</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.TotalPrice.ToString("N2") ر.ع</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                        <tfoot class="table-light">
+                            <tr>
+                                <td colspan="3" class="text-start"><strong>المجموع الفرعي:</strong></td>
+                                <td>@Model.SubTotal.ToString("N2") ر.ع</td>
+                            </tr>
+                            @if (Model.Discount > 0)
+                            {
+                                <tr>
+                                    <td colspan="3" class="text-start"><strong>الخصم:</strong></td>
+                                    <td class="text-danger">-@Model.Discount.ToString("N2") ر.ع</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="3" class="text-start"><strong>المجموع الكلي:</strong></td>
+                                <td class="text-success fw-bold fs-5">@Model.TotalAmount.ToString("N2") ر.ع</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <!-- Order Status Update -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-arrow-repeat"></i> تحديث الحالة</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="UpdateStatus" method="post">
+                    <input type="hidden" name="id" value="@Model.Id" />
+
+                    <div class="mb-3">
+                        <label class="form-label">الحالة الجديدة</label>
+                        <select name="status" class="form-select">
+                            <option value="@OrderStatus.Pending" selected="@(Model.Status == OrderStatus.Pending)">معلق</option>
+                            <option value="@OrderStatus.Confirmed" selected="@(Model.Status == OrderStatus.Confirmed)">مؤكد</option>
+                            <option value="@OrderStatus.Shipping" selected="@(Model.Status == OrderStatus.Shipping)">قيد الشحن</option>
+                            <option value="@OrderStatus.Delivered" selected="@(Model.Status == OrderStatus.Delivered)">تم التوصيل</option>
+                            <option value="@OrderStatus.Cancelled" selected="@(Model.Status == OrderStatus.Cancelled)">ملغي</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-check-circle"></i> تحديث الحالة
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Order Info -->
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-info-circle"></i> معلومات الطلب</h5>
+            </div>
+            <div class="card-body">
+                <p class="mb-2"><strong>تاريخ الطلب:</strong></p>
+                <p class="text-muted">@Model.OrderDate.ToString("yyyy-MM-dd HH:mm")</p>
+
+                <p class="mb-2"><strong>عدد المنتجات:</strong></p>
+                <p class="text-muted">@Model.OrderItems?.Count() منتج</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-right"></i> العودة للقائمة
+    </a>
+</div>
+
+@functions {
+    string GetStatusBadgeClass(OrderStatus status)
+    {
+        return status switch
+        {
+            OrderStatus.Pending => "bg-warning text-dark",
+            OrderStatus.Confirmed => "bg-info",
+            OrderStatus.Shipping => "bg-primary",
+            OrderStatus.Delivered => "bg-success",
+            OrderStatus.Cancelled => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+
+    string GetStatusText(OrderStatus status)
+    {
+        return status switch
+        {
+            OrderStatus.Pending => "معلق",
+            OrderStatus.Confirmed => "مؤكد",
+            OrderStatus.Shipping => "قيد الشحن",
+            OrderStatus.Delivered => "تم التوصيل",
+            OrderStatus.Cancelled => "ملغي",
+            _ => "غير معروف"
+        };
+    }
+}

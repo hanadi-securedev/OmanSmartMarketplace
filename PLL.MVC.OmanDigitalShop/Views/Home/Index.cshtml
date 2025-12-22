@@ -1,8 +1,105 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@* ============================================
+   Joonguini - Programming in the Kitchen
+   الصفحة الرئيسية للمتجر
+   ============================================ *@
+
+@model IEnumerable<DAL.OmanDigitalShop.Models.Products.Product>
+
+@{
+    ViewData["Title"] = "الصفحة الرئيسية";
+    var categories = ViewBag.Categories as IEnumerable<DAL.OmanDigitalShop.Models.Products.Category>;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Hero Section -->
+<div class="bg-primary text-white rounded-3 p-5 mb-5">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="display-4 fw-bold">مرحباً بك في Oman Digital Shop</h1>
+            <p class="lead">اكتشف أفضل المنتجات بأسعار منافسة</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <i class="bi bi-shop display-1"></i>
+        </div>
+    </div>
 </div>
+
+<!-- Categories Section -->
+@if (categories != null && categories.Any())
+{
+    <section class="mb-5">
+        <h3 class="mb-4"><i class="bi bi-tags"></i> التصنيفات</h3>
+        <div class="row g-3">
+            @foreach (var category in categories)
+            {
+                <div class="col-md-3 col-6">
+                    <div class="card text-center h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            @if (!string.IsNullOrEmpty(category.ImageUrl))
+                            {
+                                <img src="@category.ImageUrl" alt="@category.Name" class="mb-2" style="width: 50px; height: 50px; object-fit: cover;">
+                            }
+                            else
+                            {
+                                <i class="bi bi-tag display-5 text-primary mb-2"></i>
+                            }
+                            <h6 class="card-title mb-0">@category.Name</h6>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}
+
+<!-- Products Section -->
+<section>
+    <h3 class="mb-4"><i class="bi bi-box"></i> المنتجات</h3>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var product in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card h-100 border-0 shadow-sm">
+                        @if (!string.IsNullOrEmpty(product.ImageUrl))
+                        {
+                            <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <i class="bi bi-image display-1 text-muted"></i>
+                            </div>
+                        }
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">@product.Category?.Name</span>
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text text-muted small">
+                                @(product.Description?.Length > 80 ? product.Description.Substring(0, 80) + "..." : product.Description)
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center">
+                            <span class="text-success fw-bold fs-5">@product.Price.ToString("N2") ر.ع</span>
+                            @if (product.StockQuantity > 0)
+                            {
+                                <span class="badge bg-success">متوفر</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">نفذ</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-inbox display-1 text-muted"></i>
+            <p class="text-muted mt-3">لا توجد منتجات حالياً</p>
+        </div>
+    }
+</section>

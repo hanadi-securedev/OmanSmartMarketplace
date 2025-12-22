@@ -1,0 +1,24 @@
+@* ============================================
+   Joonguini - Programming in the Kitchen
+   صفحة رفض الوصول
+   ============================================ *@
+
+@{
+    ViewData["Title"] = "رفض الوصول";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 text-center">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="display-1 text-danger">403</h1>
+                <h2 class="text-muted">رفض الوصول</h2>
+                <p class="lead">عذراً، ليس لديك صلاحية للوصول لهذه الصفحة.</p>
+                <hr />
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                    العودة للصفحة الرئيسية
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
