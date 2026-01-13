@@ -45,5 +45,5 @@
 - Clean layout emphasizing local Omani SMEs and their products
 
 ---
-## 🏗️ Project Structure
+
 
