@@ -8,6 +8,7 @@
 using BLL.OmanDigitalShop.Context;
 using DAL.OmanDigitalShop.Interfaces;
 using DAL.OmanDigitalShop.Models.Orders;
+using DAL.OmanDigitalShop.Models.Orders.enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace BLL.OmanDigitalShop.Repositories

@@ -5,7 +5,7 @@
 // تمثل المراحل المختلفة للطلب
 // ============================================
 
-namespace DAL.OmanDigitalShop.Models.Orders
+namespace DAL.OmanDigitalShop.Models.Orders.enums
 {
     /// <summary>
     /// حالات الطلب المختلفة

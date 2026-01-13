@@ -28,6 +28,7 @@ namespace BLL.OmanDigitalShop.Repositories
 
         // ============================================
         // Constructor
+        // _dbset.Set<T>();
         // ============================================
 
         public GenericRepository(ApplicationDbContext context)

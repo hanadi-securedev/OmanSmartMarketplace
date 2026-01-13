@@ -5,6 +5,7 @@
 // يمثل طلب العميل في المتجر
 // ============================================
 
+using DAL.OmanDigitalShop.Models.Orders.enums;
 using DAL.OmanDigitalShop.Models.Users;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

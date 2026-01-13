@@ -5,7 +5,7 @@
 // إدارة الطلبات في لوحة تحكم الأدمن
 // ============================================
 
-using DAL.OmanDigitalShop.Models.Orders;
+using DAL.OmanDigitalShop.Models.Orders.enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SLL.OmanDigitalShop.Interfaces;

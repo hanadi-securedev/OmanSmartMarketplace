@@ -7,6 +7,7 @@
 
 using DAL.OmanDigitalShop.Interfaces;
 using DAL.OmanDigitalShop.Models.Orders;
+using DAL.OmanDigitalShop.Models.Orders.enums;
 using SLL.OmanDigitalShop.Interfaces;
 
 namespace SLL.OmanDigitalShop.Services

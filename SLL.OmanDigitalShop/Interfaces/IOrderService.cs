@@ -6,6 +6,7 @@
 // ============================================
 
 using DAL.OmanDigitalShop.Models.Orders;
+using DAL.OmanDigitalShop.Models.Orders.enums;
 
 namespace SLL.OmanDigitalShop.Interfaces
 {

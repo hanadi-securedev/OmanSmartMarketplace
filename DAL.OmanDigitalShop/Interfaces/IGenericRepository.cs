@@ -25,6 +25,7 @@ namespace DAL.OmanDigitalShop.Interfaces
         /// الحصول على جميع العناصر
         /// </summary>
         Task<IEnumerable<T>> GetAllAsync();
+       
 
         /// <summary>
         /// الحصول على عنصر بواسطة المعرف
