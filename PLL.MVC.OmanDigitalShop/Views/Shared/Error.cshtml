@@ -1,25 +1,43 @@
 ﻿@model ErrorViewModel
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "خطأ";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+<div class="text-center py-5">
+    <div class="empty-state">
+        <i class="bi bi-exclamation-triangle text-danger"></i>
+        <h1 class="text-danger mb-3">حدث خطأ</h1>
+        <h2 class="text-muted mb-4">حدث خطأ أثناء معالجة طلبك</h2>
+        
+        @if (Model.ShowRequestId)
+        {
+            <p class="mb-3">
+                <strong>معرف الطلب:</strong> <code class="bg-light p-2 rounded">@Model.RequestId</code>
+            </p>
+        }
+        
+        <div class="mt-4">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                <i class="bi bi-house"></i> العودة للصفحة الرئيسية
+            </a>
+        </div>
+    </div>
+</div>
 
 @if (Model.ShowRequestId)
 {
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
+    <div class="card shadow-sm mt-4">
+        <div class="card-header bg-light">
+            <h5 class="mb-0"><i class="bi bi-info-circle"></i> معلومات للمطورين</h5>
+        </div>
+        <div class="card-body">
+            <p class="text-muted small">
+                في وضع التطوير، سيتم عرض معلومات أكثر تفصيلاً حول الخطأ الذي حدث.
+            </p>
+            <p class="text-muted small mb-0">
+                <strong>ملاحظة:</strong> لا ينبغي تفعيل وضع التطوير في التطبيقات المنشورة. 
+                يمكن أن يؤدي ذلك إلى عرض معلومات حساسة للمستخدمين النهائيين.
+            </p>
+        </div>
+    </div>
 }
-
-<h3>Development Mode</h3>
-<p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
-</p>
-<p>
-    <strong>The Development environment shouldn't be enabled for deployed applications.</strong>
-    It can result in displaying sensitive information from exceptions to end users.
-    For local debugging, enable the <strong>Development</strong> environment by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>
-    and restarting the app.
-</p>

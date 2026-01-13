@@ -1,22 +1,590 @@
+﻿/* ============================================
+   Oman Smart Marketplace - Professional UI
+   Omani-Inspired Modern Design
+   ============================================ */
+
+:root {
+    /* Omani-Inspired Color Palette */
+    --oman-red: #8E4A4A;
+    --oman-red-dark: #6F3838;
+    --oman-red-light: #C9A6A6;
+    --oman-green: #8FA38A;
+    --oman-green-dark: #5F6F5B;
+    --oman-green-light: #C9D4C5;
+    --oman-gold: #D4C08A;
+    --oman-gold-light: #EFE5C7;
+    --oman-white: #FFFFFF;
+    --oman-cream: #F9F8F2;
+    --oman-sand: #EEEDE4;
+    /* Neutral Colors */
+    --gray-50: #F5F5F5; /* قريب من EEEEEE */
+    --gray-100: #EEEEEE;
+    --gray-200: #E0E0E0;
+    --gray-300: #CBCBCB;
+    --gray-600: #777C6D;
+    --gray-800: #5F6458;
+    --gray-900: #464A41;
+
+    /* Typography */
+    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-arabic: 'Segoe UI', 'Arial', sans-serif;
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+    /* Transitions */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    scroll-behavior: smooth;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: var(--font-arabic);
+    color: var(--gray-900);
+    background-color: var(--gray-50);
+    line-height: 1.6;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-md);
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+.display-4 {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--gray-600);
+}
+
+/* ============================================
+   Header & Navigation
+   ============================================ */
+
+.navbar {
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-md) 0;
+    background: linear-gradient(135deg, var(--oman-red) 0%, var(--oman-red-dark) 100%) !important;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--oman-white) !important;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: transform var(--transition-fast);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+    color: var(--oman-cream) !important;
+}
+
+.navbar-brand i {
+    font-size: 1.75rem;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-md) !important;
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+    margin: 0 var(--spacing-xs);
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--oman-white) !important;
+}
+
+.nav-link i {
+    margin-left: var(--spacing-xs);
+}
+
+.dropdown-menu {
+    border: none;
+    box-shadow: var(--shadow-lg);
+    border-radius: 8px;
+    padding: var(--spacing-sm);
+}
+
+.dropdown-item {
+    border-radius: 6px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: all var(--transition-fast);
+}
+
+.dropdown-item:hover {
+    background-color: var(--gray-100);
+    color: var(--oman-red);
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+
+.hero-section {
+    background: linear-gradient(135deg, var(--oman-red) 0%, var(--oman-red-dark) 50%, var(--oman-green-dark) 100%);
+    color: var(--oman-white);
+    padding: var(--spacing-xxl) var(--spacing-md);
+    border-radius: 16px;
+    margin-bottom: var(--spacing-xxl);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-section .row {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section h1 {
+    color: var(--oman-white);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-section .lead {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.35rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-icon {
+    font-size: 6rem;
+    opacity: 0.9;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* ============================================
+   Cards & Product Cards
+   ============================================ */
+
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: all var(--transition-normal);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-img-top {
+    transition: transform var(--transition-normal);
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: var(--spacing-lg);
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-text {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+}
+
+.card-footer {
+    background-color: var(--gray-50);
+    border-top: 1px solid var(--gray-200);
+    padding: var(--spacing-md) var(--spacing-lg);
+}
+
+/* Category Cards */
+.category-card {
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+}
+
+.category-card i {
+    color: var(--oman-red);
+    transition: all var(--transition-normal);
+}
+
+.category-card:hover i {
+    color: var(--oman-red-dark);
+    transform: scale(1.2);
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn {
+    border-radius: 8px;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-weight: 600;
+    transition: all var(--transition-fast);
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--oman-red) 0%, var(--oman-red-dark) 100%);
+    color: var(--oman-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--oman-red-dark) 0%, var(--oman-red) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--oman-white);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--oman-green) 0%, var(--oman-green-dark) 100%);
+    color: var(--oman-white);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, var(--oman-green-dark) 0%, var(--oman-green-light) 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--oman-white);
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem var(--oman-red);
+}
+
+/* ============================================
+   Badges
+   ============================================ */
+
+.badge {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.bg-success {
+    background-color: var(--oman-green) !important;
+}
+
+.bg-info {
+    background: linear-gradient(135deg, var(--oman-green-light) 0%, var(--oman-green) 100%);
+}
+
+/* ============================================
+   Forms
+   ============================================ */
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid var(--gray-300);
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: all var(--transition-fast);
+}
+
+.form-control:focus {
+    border-color: var(--oman-red);
+    box-shadow: 0 0 0 0.2rem rgba(211, 47, 47, 0.15);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* ============================================
+   Authentication Pages
+   ============================================ */
+
+.auth-card {
+    border-radius: 16px;
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    border: none;
+}
+
+.auth-card-header {
+    background: linear-gradient(135deg, var(--oman-red) 0%, var(--oman-red-dark) 100%);
+    color: var(--oman-white);
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.auth-card-header h4 {
+    color: var(--oman-white);
+    margin: 0;
+    font-weight: 700;
+}
+
+.auth-card-body {
+    padding: var(--spacing-xl);
+    background-color: var(--oman-white);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+footer {
+    background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%) !important;
+    color: var(--gray-200);
+    padding: var(--spacing-xl) 0;
+    margin-top: var(--spacing-xxl);
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin-bottom: var(--spacing-xs);
+    font-size: 1rem;
+}
+
+footer small {
+    color: var(--gray-400);
+    font-size: 0.875rem;
+}
+
+/* ============================================
+   Sections
+   ============================================ */
+
+section {
+    margin-bottom: var(--spacing-xxl);
+}
+
+section h3 {
+    color: var(--gray-900);
+    font-weight: 700;
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+section h3 i {
+    color: var(--oman-red);
+}
+
+/* ============================================
+   Admin Styles (Enhanced)
+   ============================================ */
+
+.sidebar {
+    background: linear-gradient(180deg, var(--oman-red-dark) 0%, var(--gray-900) 100%) !important;
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    transition: all var(--transition-fast);
+}
+
+.sidebar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: var(--oman-white) !important;
+    transform: translateX(-5px);
+}
+
+.sidebar .nav-link.active {
+    background: var(--oman-red) !important;
+    color: var(--oman-white) !important;
+    box-shadow: var(--shadow-md);
+}
+
+.card-stat {
+    border-radius: 12px;
+    transition: all var(--transition-normal);
+    overflow: hidden;
+}
+
+.card-stat:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   Utilities
+   ============================================ */
+
+.text-primary {
+    color: var(--oman-red) !important;
+}
+
+.bg-primary {
+    background-color: var(--oman-red) !important;
+}
+
+.shadow-sm {
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.shadow-md {
+    box-shadow: var(--shadow-md) !important;
+}
+
+.shadow-lg {
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.1rem;
+    }
+    
+    .hero-icon {
+        font-size: 4rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* ============================================
+   Loading States
+   ============================================ */
+
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* ============================================
+   Empty States
+   ============================================ */
+
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xxl);
+    color: var(--gray-600);
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: var(--gray-300);
+    margin-bottom: var(--spacing-md);
 }

@@ -9,15 +9,17 @@
 
 <div class="row justify-content-center mt-5">
     <div class="col-md-6 text-center">
-        <div class="card shadow">
-            <div class="card-body">
-                <h1 class="display-1 text-danger">403</h1>
-                <h2 class="text-muted">رفض الوصول</h2>
-                <p class="lead">عذراً، ليس لديك صلاحية للوصول لهذه الصفحة.</p>
-                <hr />
-                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
-                    العودة للصفحة الرئيسية
-                </a>
+        <div class="card shadow-lg">
+            <div class="card-body py-5">
+                <div class="empty-state">
+                    <i class="bi bi-shield-exclamation text-danger" style="font-size: 5rem;"></i>
+                    <h1 class="display-1 text-danger mb-3">403</h1>
+                    <h2 class="text-muted mb-3">رفض الوصول</h2>
+                    <p class="lead text-muted mb-4">عذراً، ليس لديك صلاحية للوصول لهذه الصفحة.</p>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-lg">
+                        <i class="bi bi-house"></i> العودة للصفحة الرئيسية
+                    </a>
+                </div>
             </div>
         </div>
     </div>

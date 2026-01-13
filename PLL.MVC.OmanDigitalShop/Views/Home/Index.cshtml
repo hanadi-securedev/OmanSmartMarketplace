@@ -11,14 +11,15 @@
 }
 
 <!-- Hero Section -->
-<div class="bg-primary text-white rounded-3 p-5 mb-5">
+<div class="hero-section">
     <div class="row align-items-center">
         <div class="col-md-8">
-            <h1 class="display-4 fw-bold">مرحباً بك في Oman Digital Shop</h1>
-            <p class="lead">اكتشف أفضل المنتجات بأسعار منافسة</p>
+            <h1 class="display-4 fw-bold">مرحباً بك في سوق عمان الذكي</h1>
+            <p class="lead">منصة تدعم المشاريع الصغيرة والمتوسطة العمانية</p>
+            <p class="lead mb-0">Oman Smart Marketplace – Supporting Omani Small & Medium Enterprises</p>
         </div>
         <div class="col-md-4 text-center">
-            <i class="bi bi-shop display-1"></i>
+            <i class="bi bi-shop-window hero-icon"></i>
         </div>
     </div>
 </div>
@@ -32,17 +33,17 @@
             @foreach (var category in categories)
             {
                 <div class="col-md-3 col-6">
-                    <div class="card text-center h-100 border-0 shadow-sm">
+                    <div class="card category-card text-center h-100 border-0 shadow-sm">
                         <div class="card-body">
                             @if (!string.IsNullOrEmpty(category.ImageUrl))
                             {
-                                <img src="@category.ImageUrl" alt="@category.Name" class="mb-2" style="width: 50px; height: 50px; object-fit: cover;">
+                                <img src="@category.ImageUrl" alt="@category.Name" class="mb-3 rounded" style="width: 60px; height: 60px; object-fit: cover;">
                             }
                             else
                             {
-                                <i class="bi bi-tag display-5 text-primary mb-2"></i>
+                                <i class="bi bi-tag display-5 mb-3"></i>
                             }
-                            <h6 class="card-title mb-0">@category.Name</h6>
+                            <h6 class="card-title mb-0 fw-bold">@category.Name</h6>
                         </div>
                     </div>
                 </div>

@@ -11,11 +11,11 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6 col-lg-5">
-        <div class="card shadow mt-5">
-            <div class="card-header bg-success text-white text-center">
+        <div class="card auth-card shadow mt-5">
+            <div class="card-header auth-card-header">
                 <h4>تسجيل حساب جديد</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body auth-card-body">
                 <form asp-action="Register" method="post">
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
 
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-success">تسجيل</button>
+                        <button type="submit" class="btn btn-primary">تسجيل</button>
                     </div>
                 </form>
 
